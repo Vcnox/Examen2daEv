@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LakituMovement : MonoBehaviour
 {
@@ -24,5 +25,18 @@ public class LakituMovement : MonoBehaviour
         }
 
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<MarioScript>())
+        {
+        
+            GameManager.instance.ResetTime();
+            GameManager.instance.LoadScene("Game");
+        }
+    }
 }
+
+
+
+
+

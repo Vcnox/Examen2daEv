@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Globalization;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+
+
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MarioScript : MonoBehaviour
 {
+    public enum CurrentState { WALKING, IDLE}
+
+
     public KeyCode rightKey, leftKey, jumpKey;
     public float speed, rayDistance, jumpForce;
     public LayerMask groundMask;
@@ -17,6 +24,7 @@ public class MarioScript : MonoBehaviour
     private Animator _animator;
     private Vector2 dir;
     private bool _intentionToJump;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -53,20 +61,7 @@ public class MarioScript : MonoBehaviour
         {
             Instantiate(fireworkPrefab, transform.position, Quaternion.identity);
         }
-
-        #region ANIMACIONES
-        // ANIMACIONES (PROXIMA DIA ORGANIZARLO EN OTRO SCRIPT)
-        if (dir != Vector2.zero)
-        {
-            // estamos andando
-            _animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            // estamos parados
-            _animator.SetBool("isWalking", false);
-        }
-        #endregion
+        
     }
 
     private void FixedUpdate()

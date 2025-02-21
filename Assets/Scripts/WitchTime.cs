@@ -13,17 +13,12 @@ public class WitchTime : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             SlowMotion();
-            IsSlowed = true;
         }
-        else
-        {
-
-            IsSlowed = false;
-        }
+       
     }
     private IEnumerator SlowMotion()
     {
-      
+        IsSlowed = true;
         Time.timeScale = DurationSlowMotion;
         yield return new WaitForSeconds(DurationSlowMotion);
         
